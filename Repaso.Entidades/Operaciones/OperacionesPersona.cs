@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Repaso.AccesoDatos;
 
+
 namespace Repaso.Entidades
 {
     public class OperacionesPersona : IOperaciones<Persona>
@@ -55,6 +56,7 @@ namespace Repaso.Entidades
 
 
             }
+            coneccion.nonQueryUsing(Sqlstring);
             return null;
         }
 
@@ -78,6 +80,13 @@ namespace Repaso.Entidades
         {
             string Sqlstring = string.Format("UPDATE[dbo].[Persona] SET [nombre]='{0}',[apellido] ='{1}',[cedula] ='{2}' WHERE id={3}", item.Nombre, item.Apellido, item.Cedula, item.Id);
             coneccion.nonQueryUsing(Sqlstring);
+        }
+
+        public SqlDataReader MostrarTodo()
+        {
+
+            string SQLstring = string.Format("select * from [dbo].[Personas]");
+            return coneccion.QueryUsing(SQLstring);
         }
     }
 }

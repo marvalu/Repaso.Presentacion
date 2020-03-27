@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Sql;
 
 namespace Repaso.AccesoDatos
 {
@@ -11,7 +12,8 @@ namespace Repaso.AccesoDatos
         public class Coneccion
         {
             private string connectionString = @"Data Source=VALVERMA4\SQLEXPRESS;Initial Catalog=repaso;User ID=Progra3;Password=123456";
-            private SqlConnection cnn;
+      //  private string connectionString = @"Data Source=VALVERMA4\SQLEXPRESS;Initial Catalog=repaso;User ID=AUTH\valverma;Password=25480593";
+        private SqlConnection cnn;
 
             public bool CreaConexion()
             {
@@ -102,7 +104,7 @@ namespace Repaso.AccesoDatos
                     try
                     {
                         connection.Open();
-                        cmd = new SqlCommand(query, cnn);
+                        cmd = new SqlCommand(query, connection);
                         cmd.ExecuteNonQuery();
                         cmd.Dispose();
                         Console.WriteLine("  NonQuery in SqlCommand executed !!");
@@ -130,7 +132,7 @@ namespace Repaso.AccesoDatos
                     try
                     {
                         connection.Open();
-                        cmd = new SqlCommand(query, cnn);
+                        cmd = new SqlCommand(query, connection);
                         SqlDataReader resultado = cmd.ExecuteReader();
                         cmd.Dispose();
                         if (resultado.HasRows)
@@ -148,6 +150,8 @@ namespace Repaso.AccesoDatos
 
 
             }
+       // using (SqlConnection connection = new SqlConnection(connectionString))
+     
 
 
 
