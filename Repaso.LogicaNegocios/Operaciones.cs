@@ -55,41 +55,45 @@ namespace Repaso.LogicaNegocios
 
         public void modificar(int id, string nombre, string apellido, string ced) {
 
+
+            try
+            {
+                Persona persona = new Persona(id, nombre, apellido, ced);
+
+                operacionesPersona.Modificar(persona);
+                
+
+
+
+            }
+            catch (Exception)
+            {
+
+                Console.WriteLine("error insertando");
+            }
             
-           // Boolean modifica;
-            
-            persona=operacionesPersona.Buscar(id);
 
-
-            if (persona.Apellido != apellido)
-            {
-                persona.Apellido = apellido;
-            }
-
-
-            if (persona.Nombre != nombre)
-            {
-                persona.Nombre = nombre;
-            }
-
-            if (persona.Cedula != ced)
-            {
-                persona.Apellido = ced;
-            }
-
-          
+         
            // return modifica=true;
         
         }
 
 
-        //public SqldataReader Actualizar()
-        //{
+        public SqlDataReader Actualizar()
+        {
+
+            SqlDataReader sql = operacionesPersona.MostrarTodo();
 
 
-        //    operacionesPersona.MostrarTodo();
-        //    return null;
-        //}
+            return sql;
+          
+        }
+
+        public Persona Buscar(int id) {
+
+
+            return operacionesPersona.Buscar(id);
+        }
 
     }
 }

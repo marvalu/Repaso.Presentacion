@@ -133,7 +133,9 @@ namespace Repaso.AccesoDatos
                     {
                         connection.Open();
                         cmd = new SqlCommand(query, connection);
+
                         SqlDataReader resultado = cmd.ExecuteReader();
+
                         cmd.Dispose();
                         if (resultado.HasRows)
                         {
@@ -150,7 +152,7 @@ namespace Repaso.AccesoDatos
 
 
             }
-       // using (SqlConnection connection = new SqlConnection(connectionString))
+       
      
 
 

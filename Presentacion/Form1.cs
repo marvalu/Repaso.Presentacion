@@ -70,14 +70,16 @@ namespace Presentacion
             {
                 MessageBox.Show("los paramentros ubicados en las casillas de nombre y apellido van a ser modificados por el ID sumiminstrado");
 
-                logica1.modificar(int.Parse(IDText.Text), NombreText.Text, ApellidoText.Text, CedText.Text);
+                /*Persona persona= */logica1.modificar(int.Parse(IDText.Text), NombreText.Text, ApellidoText.Text, CedText.Text);
+
+
 
               //  MessageBox.Show("Modificado correctamente");
             }
             catch (Exception)
             {
 
-                MessageBox.Show("envio de paramentro incorrectos");
+                MessageBox.Show("ID era nulo o no existia");
             }
 
 
@@ -106,7 +108,16 @@ namespace Presentacion
 
         private void button4_Click(object sender, EventArgs e)
         {
-            logica1.Actualizar();
+            dataGridView1.AutoGenerateColumns = true;
+            dataGridView1.DataSource = logica1.Actualizar();
+            dataGridView1.Refresh();
+           
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Persona persona = new Persona();
+            persona = (logica1.Buscar(int.Parse(IDText.Text)));
         }
     }
 }

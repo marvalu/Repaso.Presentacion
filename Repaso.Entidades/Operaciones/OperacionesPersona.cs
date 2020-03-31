@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -37,12 +38,15 @@ namespace Repaso.Entidades
             return null;
         }
 
+
+        
+
         public Persona Buscar(int id)
         {
 
             string Sqlstring = string.Format("select * from Persona where id={0}", id);
 
-
+            
             SqlDataReader SQLTemporal = coneccion.QueryUsing(Sqlstring);
             if (SQLTemporal != null && SQLTemporal.HasRows)
             {
@@ -56,9 +60,14 @@ namespace Repaso.Entidades
 
 
             }
+            
             coneccion.nonQueryUsing(Sqlstring);
             return null;
         }
+
+
+
+
 
         public void Eliminar(Persona item)
         {
